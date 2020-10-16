@@ -63,6 +63,10 @@ class Tasks(Scraper, Excel):
         Excel.__init__(self)
     
     def task_creator(self):
+        """
+        Creates dynamic async functions and store them in 
+        array whichc is unziped to asyncio loop starter
+        """
         functions = []
         first = 3000
         second = 3300
