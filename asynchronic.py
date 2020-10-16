@@ -9,6 +9,12 @@ class Scraper(AsyncHTMLSession):
         self.scraped_pages = []
     
     async def __comments(self, links):
+        """
+        Private method to scrap comments from passed list of topics.
+        It opens each topic and scrap the avaialbe comments.
+        
+        links:array - All topics from the certain page
+        """
         for link in links:
             try:
                 link_response = await self.get(link, verify=False)
@@ -23,6 +29,11 @@ class Scraper(AsyncHTMLSession):
                 continue
 
     async def _base(self, range1, range2):
+        """
+        Main pattern to scrap topics from pages
+        range1:int - Iteration start
+        range2:int - Iteration stop
+        """
         for x in range(range1, range2):
             try:
                 site_content = await self.get(f"https://www.wykop.pl/strona/{x}/", verify=False)
@@ -45,6 +56,7 @@ class Excel(Workbook):
             self.save(self.workbook_name)
       
     def add_data(self, comments):
+        """Writes data to excel"""
         self.load = load_workbook(self.workbook_name)
         self.ns = self.load.get_sheet_by_name("Sheet")
         for comment in comments:
