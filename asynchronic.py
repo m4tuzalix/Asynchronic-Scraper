@@ -36,7 +36,7 @@ class Excel(Workbook):
     def __init__(self):
         Workbook.__init__(self)
         self.ws = self.active
-        self.workbook_name = f"huj2.xlsx"
+        self.workbook_name = f"list.xlsx"
         try:
             self.load = load_workbook(self.workbook_name)
         except FileNotFoundError:
